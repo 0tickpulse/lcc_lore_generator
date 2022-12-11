@@ -1,0 +1,54 @@
+  Lore:
+#unused
+  - '&8<st><bold>                                           </bold></st>'
+  - '&8<st><bold>                </bold></st>[ &9&7Elements&8 ]&8<st><bold>                </bold></st>'
+  - '&f🔥🧊💎🌩💧🍃💨🌌💡🔱'
+#/unused
+#required
+  - '<gray><st><bold>                                           </bold></st>'
+  - ''
+#skill
+#per-skill keys:
+#  required: trigger, skill name, description
+#  optional:
+#    cooldown [&8| <#f28313>##s Cooldown ]
+#    energy cost [&8| &c-##&b⚡]
+#    condition (entire line)[  - ' <bold>&8| <#b31e14>[!]</bold> &7...']
+
+  - '<#1378f2>Trigger &8| <#f28313>##s Cooldown &8| &c-##&b⚡'
+  - ' <bold>&8| <#b31e14>[!]</bold> &7Conditions'
+  - '&8└ <bold>&6Skillname</bold> &8➤ &7Description'
+  - ''
+#/skill
+#effects: health, speed, ???unused, attack, luck, defense
+  - '&8<st><bold>                </bold></st>[ &9&7Effects&8 ]&8<st><bold>                </bold></st>'
+  - ''
+  - '  &a+480&c❤  &ax10&f👟  &c-10&b⚡  &ax2&f⚔  &a+102&f🍀  &ax2&f🛡'
+  - ''
+#/effects
+# (optional) flavor text
+  - '&8<st><bold>                                           </bold></st>'
+  - '&8Some flavor text or lore.'
+# /flavor text
+#tier types
+  - ''
+  - '&8<st><bold>                </bold></st>[ <bold><gradient:#3876fc:#38a4fc:#3876fc>ADMIN</gradient></bold>&8 ]&8<st><bold>                </bold></st>'
+  - '&8<st><bold>               </bold></st>[ &9<bold>&7UTILITY</bold>&8 ]&8<st><bold>               </bold></st>'
+  - '&8<st><bold>               </bold></st>[ &9<bold><gradient:#d1040e:#990007:#d1040e>CURSED</gradient></bold>&8 ]&8<st><bold>               </bold></st>'
+  - '&8<st><bold>                </bold></st>[ &9<bold><gradient:#c302d1:#632fbd:#c302d1>EVENT</gradient></bold>&8 ]&8<st><bold>                </bold></st>'
+  - '&8<st><bold>             </bold></st>[ <#fccb38><bold>DECORATION</bold> &8]&8<st><bold>             </bold></st>'
+  - '&8<st><bold>              </bold></st>[ <#fccb38><bold>COSMETIC</bold> &8]&8<st><bold>              </bold></st>'
+  - '&8<st><bold>              </bold></st>[ &9<bold><gradient:#3876fc:#6a08fc>MYTHICAL</gradient></bold>&8 ]&8<st><bold>              </bold></st>'
+  - '&8<st><bold>             </bold></st>[ &9<bold><gradient:#4ccf19:#04b553:#4ccf19>LEGENDARY</gradient></bold>&8 ]&8<st><bold>             </bold></st>'
+  - '&8<st><bold>              </bold></st>[ &9<bold><gradient:#a900d4:#a60365:#a900d4>UNCOMMON</gradient></bold>&8 ]&8<st><bold>              </bold></st>'
+  - '&8<st><bold>                </bold></st>[ &9<bold>&fBASIC</bold>&8 ]&8<st><bold>                </bold></st>'
+  - '&8<st><bold>             </bold></st>[ &9<bold>&6CONSUMABLE</bold>&8 ]&8<st><bold>             </bold></st>'
+#/tier types
+#special tiers (corruptor, radiant. can be ignored?)
+  - ''
+  - '&8<st><bold><gradient:#25c5fa:#8204FF:#CD06FF:#8204FF:#25c5fa>                                           </gradient></bold></st>'
+  - '<gradient:#25c5fa:#8204FF:#CD06FF><st><bold>                </bold></st>[</gradient> &9&7Effects&8 <gradient:#CD06FF:#8204FF:#25c5fa>]<st><bold>                </bold></st></gradient>'
+  - ''
+  - ''
+  - '<gradient:#25c5fa:#8204FF:#CD06FF><st><bold>              </bold></st>[</gradient> &9<bold><gradient:#3876fc:#6a08fc>MYTHICAL</gradient></bold> <gradient:#CD06FF:#8204FF:#25c5fa>]<st><bold>              </bold></st></gradient>'
+#/special tiers

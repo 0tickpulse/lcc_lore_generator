@@ -48,7 +48,7 @@ async function main() {
     const output = {};
     for (const [key, value] of Object.entries(data)) {
         console.log(`Writing item ${key}...`);
-        const item = new generator_1.LCCItem(value);
+        const item = new generator_1.LCCGenerator(value);
         output[key] = item.generate();
     }
     // create output/items.yml

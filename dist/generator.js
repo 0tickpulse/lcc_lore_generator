@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LCCItem = exports.WIDTH_MAP = void 0;
+exports.LCCGenerator = exports.WIDTH_MAP = void 0;
 exports.WIDTH_MAP = new Map();
 ["!", ",", ".", ":", ";", "|", "i", "'"].forEach((i) => exports.WIDTH_MAP.set(i, 2));
 ["l", "`"].forEach((i) => exports.WIDTH_MAP.set(i, 3));
@@ -62,7 +62,7 @@ function splitLinesByWidth(text, width) {
     lines.push(line);
     return lines;
 }
-class LCCItem {
+class LCCGenerator {
     data;
     constructor(data) {
         this.data = data;
@@ -210,4 +210,4 @@ class LCCItem {
         return lines.join("\n").split("\n");
     }
 }
-exports.LCCItem = LCCItem;
+exports.LCCGenerator = LCCGenerator;

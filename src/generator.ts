@@ -171,7 +171,7 @@ function splitLinesByWidth(text: string, width: number): string[] {
     return lines;
 }
 
-export class LCCItem {
+export class LCCGenerator {
     public constructor(public data: LCCItemData) {}
     public generate(): LCCItemOutput {
         return {
@@ -211,7 +211,7 @@ export class LCCItem {
         if (this.data.abilities) {
             lines.push("");
             for (const ability of this.data.abilities) {
-                let topLine = `${ability.trigger}`;
+                let topLine = `<#1378f2>${ability.trigger}`;
                 if (ability.cooldown || ability.energy || ability.durability || ability.health) {
                     topLine += " <dark_gray>|";
                     if (ability.cooldown) {

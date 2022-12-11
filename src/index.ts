@@ -1,7 +1,7 @@
 import * as yaml from "yaml";
 import * as fs from "fs/promises";
 import * as path from "path";
-import { LCCItem, LCCItemData, LCCItemOutput } from "./generator";
+import { LCCGenerator, LCCItemData, LCCItemOutput } from "./generator";
 
 export type Config = {
     [key: string]: LCCItemData;
@@ -28,7 +28,7 @@ async function main() {
     const output: { [key: string]: LCCItemOutput } = {};
     for (const [key, value] of Object.entries(data)) {
         console.log(`Writing item ${key}...`);
-        const item = new LCCItem(value);
+        const item = new LCCGenerator(value);
         output[key] = item.generate();
     }
     // create output/items.yml

@@ -91,7 +91,11 @@ class LCCItem {
         if (effects.speed) {
             attributes.MovementSpeed = effects.speed - 1;
         }
-        return attributes;
+        const output = {};
+        for (const slot of this.data.effectslots ?? ["mainhand"]) {
+            output[slot] = attributes;
+        }
+        return output;
     }
     generateLoreLines() {
         const lines = [];

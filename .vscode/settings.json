@@ -1,13 +1,5 @@
 {
     "yaml.schemas": {
         ".\\schemas\\config.json": "data.yml"
-    },
-    "json.schemas": [
-        {
-            "fileMatch": [
-                "data.json"
-            ],
-            "url": ".\\schemas\\config.json"
-        }
-    ]
+    }
 }

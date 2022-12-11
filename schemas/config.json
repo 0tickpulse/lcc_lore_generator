@@ -1,15 +1,10 @@
 {
-    "$ref": "#/definitions/Config",
     "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": {
+        "$ref": "#/definitions/LCCItemData"
+    },
     "definitions": {
-        "Config": {
-            "additionalProperties": {
-                "$ref": "#/definitions/LCCItemData"
-            },
-            "type": "object"
-        },
         "LCCAbility": {
-            "additionalProperties": false,
             "properties": {
                 "conditions": {
                     "description": "Any conditions that must be met for the ability to be triggered.",
@@ -47,15 +42,20 @@
                     "type": "string"
                 }
             },
-            "required": [
-                "name",
-                "trigger",
-                "description"
-            ],
             "type": "object"
         },
+        "LCCItemAttributeSlot": {
+            "enum": [
+                "Chest",
+                "Feet",
+                "Head",
+                "Legs",
+                "MainHand",
+                "OffHand"
+            ],
+            "type": "string"
+        },
         "LCCItemData": {
-            "additionalProperties": false,
             "properties": {
                 "abilities": {
                     "description": "Any abilities this item has.",
@@ -65,7 +65,6 @@
                     "type": "array"
                 },
                 "effects": {
-                    "additionalProperties": false,
                     "description": "Any effects this item has. These are attributes for the items.",
                     "properties": {
                         "armor": {
@@ -95,32 +94,16 @@
                     },
                     "type": "object"
                 },
-                "flavortext": {
-                    "description": "Any additional text that should be displayed on the item.",
-                    "type": "string"
-                },
-                "tier": {
-                    "description": "The tier of the item.",
-                    "enum": [
-                        "admin",
-                        "utility",
-                        "cursed",
-                        "event",
-                        "decoration",
-                        "cosmetic",
-                        "mythical",
-                        "legendary",
-                        "uncommon",
-                        "basic",
-                        "consumable"
-                    ],
-                    "type": "string"
+                "effectslots": {
+                    "description": "The slots this item's effects apply in.",
+                    "items": {
+                        "$ref": "#/definitions/LCCItemAttributeSlot"
+                    },
+                    "type": "array"
                 }
             },
-            "required": [
-                "tier"
-            ],
             "type": "object"
         }
-    }
+    },
+    "type": "object"
 }

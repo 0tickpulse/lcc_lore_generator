@@ -19,7 +19,6 @@ adminblade:
   flavortext: "This is the Admin Blade"
   tier: admin
 othersword:
-  tier: cursed
   effects:
     health: 30
     energy: 20

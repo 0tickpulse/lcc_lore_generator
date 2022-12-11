@@ -1,5 +1,3 @@
-import { LCCItemData } from "./index.js";
-
 export const WIDTH_MAP = new Map<string, number>();
 ["!", ",", ".", ":", ";", "|", "i", "'"].forEach((i) => WIDTH_MAP.set(i, 2));
 ["l", "`"].forEach((i) => WIDTH_MAP.set(i, 3));
@@ -46,7 +44,92 @@ function getWidth(char: string): number {
     return WIDTH_MAP.get(char) || 6;
 }
 
-export interface LCCItemAttributeData {
+export type LCCItemAttributeSlot = "MainHand" | "OffHand" | "Head" | "Chest" | "Legs" | "Feet";
+
+export interface LCCAbility {
+    /**
+     * The name of the ability.
+     */
+    name: string;
+    /**
+     * When it should be triggered.
+     */
+    trigger: string;
+    /**
+     * The cooldown of the ability, in seconds.
+     */
+    cooldown?: number;
+    /**
+     * Any conditions that must be met for the ability to be triggered.
+     */
+    conditions?: string[];
+    /**
+     * The amount of energy the ability costs.
+     */
+    energy?: number;
+    /**
+     * The amount of health the ability costs.
+     */
+    health?: number;
+    /**
+     * The amount of durability the ability costs.
+     */
+    durability?: number;
+    /**
+     * The description of the ability.
+     */
+    description: string;
+}
+
+export interface LCCItemData {
+    /**
+     * The slots this item's effects apply in.
+     */
+    effectslots: LCCItemAttributeSlot[];
+    /**
+     * Any abilities this item has.
+     */
+    abilities?: LCCAbility[];
+    /**
+     * Any effects this item has. These are attributes for the items.
+     */
+    effects?: {
+        /**
+         * The amount of health this item provides.
+         */
+        health?: number;
+        /**
+         * The amount of movement speed this item provides. Multiplicative.
+         */
+        speed?: number;
+        /**
+         * The amount of energy this item provides.
+         */
+        energy?: number;
+        /**
+         * The amount of attack this item provides.
+         */
+        attack?: number;
+        /**
+         * The amount of armor this item provides. Multiplicative.
+         */
+        armor?: number;
+        /**
+         * The amount of luck this item provides.
+         */
+        luck?: number;
+    };
+    /**
+     * Any additional text that should be displayed on the item.
+     */
+    flavortext?: string;
+    /**
+     * The tier of the item.
+     */
+    tier: "admin" | "utility" | "cursed" | "event" | "decoration" | "cosmetic" | "mythical" | "legendary" | "uncommon" | "basic" | "consumable";
+}
+
+export interface LCCItemAttributes {
     AttackSpeed?: number;
     Armor?: number;
     ArmorToughness?: number;
@@ -56,6 +139,10 @@ export interface LCCItemAttributeData {
     KnockbackResistance?: number;
     MovementSpeed?: number;
 }
+
+export type LCCItemAttributeData = {
+    [key in LCCItemAttributeSlot]?: LCCItemAttributes;
+};
 
 export interface LCCItemOutput {
     /**
@@ -97,7 +184,7 @@ export class LCCItem {
         if (!effects) {
             return {};
         }
-        const attributes: LCCItemAttributeData = {};
+        const attributes: LCCItemAttributes = {};
         if (effects.health) {
             attributes.Health = effects.health;
         }
@@ -110,7 +197,11 @@ export class LCCItem {
         if (effects.speed) {
             attributes.MovementSpeed = effects.speed - 1;
         }
-        return attributes;
+        const output: LCCItemAttributeData = {};
+        for (const slot of this.data.effectslots ?? ["mainhand"]) {
+            output[slot] = attributes;
+        }
+        return output;
     }
     public generateLoreLines(): string[] {
         const lines: string[] = [];

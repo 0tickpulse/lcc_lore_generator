@@ -30,7 +30,8 @@ const generator_1 = require("./generator");
 async function main() {
     let data;
     try {
-        data = yaml.parse(await fs.readFile(path.join(__dirname, "..", "data", "data.yml"), "utf-8"), { schema: "yaml-1.1" }) ?? undefined;
+        data =
+            yaml.parse(await fs.readFile(path.join(__dirname, "..", "data", "data.yml"), "utf-8"), { schema: "yaml-1.1" }) ?? undefined;
     }
     catch (e) {
         console.log(`Error while scanning: ${e}`);

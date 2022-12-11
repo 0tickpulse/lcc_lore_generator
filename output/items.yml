@@ -15,10 +15,11 @@ adminblade:
     - ""
     - <dark_gray><st><bold>                </bold></st>[ <bold><gradient:#3876fc:#38a4fc:#3876fc>ADMIN</gradient></bold><dark_gray> ]<dark_gray><st><bold>                </bold></st>
   Attributes:
-    Health: 100
-    Damage: 10
-    Armor: 5
-    MovementSpeed: 4
+    mainhand:
+      Health: 100
+      Damage: 10
+      Armor: 5
+      MovementSpeed: 4
 othersword:
   Lore:
     - <gray><st><bold>                                           </bold></st>
@@ -34,4 +35,5 @@ othersword:
     - ""
     - <dark_gray><st><bold>               </bold></st>[ &9<bold><gradient:#d1040e:#990007:#d1040e>CURSED</gradient></bold><dark_gray> ]<dark_gray><st><bold>               </bold></st>
   Attributes:
-    Health: 30
+    mainhand:
+      Health: 30

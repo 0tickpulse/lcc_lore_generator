@@ -4,8 +4,9 @@ Lore generator for items in LcorpCity, a server I work for.
 
 ## HOW TO USE
 
-1. Open the main folder on VSCode
-2. Open a terminal and run `npm i`. This will install all the dependencies.
-3. Open `data/data.yml` and create your items.
-4. In the terminal, run `npm start`, or press `F5`.
-5. An output file should be created in `output/items.yml`.
+1. Clone the repository
+1. Open the repository on VSCode
+1. Open a terminal and run `npm i`. This will install all the dependencies.
+1. Open `data/data.yml` and create your items.
+1. In the terminal, run `npm start`, or press `F5`.
+1. An output file should be created in `output/items.yml`.

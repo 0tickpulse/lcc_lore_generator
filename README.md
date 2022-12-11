@@ -1,5 +1,7 @@
 # LCC Lore Generator
 
+Lore generator for items in LcorpCity, a server I work for.
+
 ## HOW TO USE
 
 1. Open the main folder on VSCode

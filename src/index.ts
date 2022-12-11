@@ -35,7 +35,7 @@ async function main() {
     console.log("Items generated.");
     console.log("Writing items to file...");
     await fs.mkdir(path.join(__dirname, "..", "output"));
-    await fs.writeFile(path.join(__dirname, "..", "output", "items.yml"), yaml.stringify(output, { lineWidth: 1000 }));
+    await fs.writeFile(path.join(__dirname, "..", "output", "items.yml"), yaml.stringify(output, { lineWidth: 1000, defaultStringType: "QUOTE_SINGLE", defaultKeyType: "PLAIN" }));
     console.log("Items written to file.");
     console.log(`Process complete. Total time elapsed: ${Math.round(process.uptime() * 1000)}ms`);
 }

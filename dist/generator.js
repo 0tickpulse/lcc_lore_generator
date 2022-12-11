@@ -92,7 +92,7 @@ class LCCGenerator {
             attributes.MovementSpeed = effects.speed - 1;
         }
         const output = {};
-        for (const slot of this.data.effectslots ?? ["mainhand"]) {
+        for (const slot of this.data.effectslots ?? ["MainHand"]) {
             output[slot] = attributes;
         }
         return output;
@@ -103,7 +103,7 @@ class LCCGenerator {
         if (this.data.abilities) {
             lines.push("");
             for (const ability of this.data.abilities) {
-                let topLine = `${ability.trigger}`;
+                let topLine = `<#1378f2>${ability.trigger}`;
                 if (ability.cooldown || ability.energy || ability.durability || ability.health) {
                     topLine += " <dark_gray>|";
                     if (ability.cooldown) {

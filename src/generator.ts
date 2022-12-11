@@ -197,6 +197,9 @@ export class LCCGenerator {
         if (effects.speed) {
             attributes.MovementSpeed = effects.speed - 1;
         }
+        if (effects.luck) {
+            attributes.Luck = effects.luck;
+        }
         const output: LCCItemAttributeData = {};
         for (const slot of this.data.effectslots ?? ["MainHand"]) {
             output[slot] = attributes;

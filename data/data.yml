@@ -4,7 +4,7 @@ adminblade:
     trigger: "Crouch + LMB"
     cooldown: 10
     conditions:
-    - "<50% :heart:"
+    - "<50% ❤"
     - Other
     energy: 5
     health: 1

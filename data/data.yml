@@ -1,30 +1,15 @@
-adminblade:
+wandfirebasic:
   abilities:
-  - name: "Admin Beam"
+  - name: "Torch"
     trigger: "Crouch + LMB"
-    cooldown: 10
+    cooldown: 1
     conditions:
-    - "<50% ❤"
-    - Other
-    energy: 5
-    health: 1
-    durability: 1
-    description: "Does this"
-  effects:
-    health: 100
-    attack: 10
-    armor: 5
-    speed: 5
-    luck: 69
-  flavortext: "This is the Admin Blade"
-  tier: admin
-othersword:
-  effects:
-    health: 30
-    energy: 20
-  abilities:
-    - description: Obama
-      name: Obama slash
-      trigger: Left click
-      cooldown: 10
-  flavortext: "This is the Obama Sword"
+    energy: 8
+    description: "Shoot a fireball"
+  - name: "Embers"
+    trigger: "Crouch + RMB"
+    cooldown: 3
+    conditions:
+    energy: 15
+    description: "Surround yourself with embers"
+  tier: basic

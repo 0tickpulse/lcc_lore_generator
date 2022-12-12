@@ -1,37 +1,13 @@
-adminblade:
+wandfirebasic:
   Lore:
-    - '<gray><st><bold>                                           </bold></st>'
+    - '<dark_gray><st><bold>                                           </bold></st>'
     - ''
-    - '<#1378f2>Crouch + LMB <dark_gray>| <#f28313>10s Cooldown <dark_gray>| <red>-5<light_blue>⚡ <dark_gray>| <red>-1 Dur1 HP'
-    - ' <bold><dark_gray>| <#b31e14>[!]</bold> <50% ❤'
-    - ' <bold><dark_gray>| <#b31e14>[!]</bold> Other'
-    - '<dark_gray>└ <bold><gold>Admin Beam</bold> <dark_gray>➤ <gray>Does this'
+    - '<#1378f2>Crouch + LMB <dark_gray>| <#f28313>1s Cooldown <dark_gray>| <red>-8<aqua>⚡'
+    - ' <dark_gray>└ <bold><gold>Torch</bold> <dark_gray>➤ <gray>Shoot a fireball'
     - ''
-    - '<dark_gray><st><bold>                </bold></st>[ &9&7Effects<dark_gray> ]<dark_gray><st><bold>                </bold></st>'
-    - '  <green>+100<red>❤  <green>x10<white>⚔  <green>x5<white>🛡  <green>x5<white>👟  <green>+69<white>🍀'
+    - '<#1378f2>Crouch + RMB <dark_gray>| <#f28313>3s Cooldown <dark_gray>| <red>-15<aqua>⚡'
+    - ' <dark_gray>└ <bold><gold>Embers</bold> <dark_gray>➤ <gray>Surround yourself with'
+    - '<gray>   embers'
     - ''
-    - '<dark_gray><st><bold>                                           </bold></st>'
-    - '<dark_gray>This is the Admin Blade'
-    - ''
-    - '<dark_gray><st><bold>                </bold></st>[ <bold><gradient:#3876fc:#38a4fc:#3876fc>ADMIN</gradient></bold><dark_gray> ]<dark_gray><st><bold>                </bold></st>'
-  Attributes:
-    MainHand:
-      Health: 100
-      Damage: 10
-      Armor: 5
-      MovementSpeed: 4
-othersword:
-  Lore:
-    - '<gray><st><bold>                                           </bold></st>'
-    - ''
-    - '<#1378f2>Left click <dark_gray>| <#f28313>10s Cooldown'
-    - '<dark_gray>└ <bold><gold>Obama slash</bold> <dark_gray>➤ <gray>Obama'
-    - ''
-    - '<dark_gray><st><bold>                </bold></st>[ &9&7Effects<dark_gray> ]<dark_gray><st><bold>                </bold></st>'
-    - '  <green>+30<red>❤  <green>+20<aqua>⚡'
-    - ''
-    - '<dark_gray><st><bold>                                           </bold></st>'
-    - '<dark_gray>This is the Obama Sword'
-  Attributes:
-    MainHand:
-      Health: 30
+    - '<dark_gray><st><bold>                </bold></st>[ &9<bold>&fBASIC</bold><dark_gray> ]<dark_gray><st><bold>                </bold></st>'
+  Attributes: {}

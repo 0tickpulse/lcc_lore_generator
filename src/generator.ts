@@ -157,15 +157,16 @@ function splitLinesByWidth(text: string, width: number): string[] {
     const lines: string[] = [];
     let line = "";
     let lineLength = 0;
-    for (const char of text) {
-        const charWidth = getWidth(char);
-        if (lineLength + charWidth > width) {
+    for (const word of text.split(" ")) {
+        const wordLength = word.split("").reduce((a, b) => a + getWidth(b), 0);
+        if (lineLength + wordLength > width) {
             lines.push(line);
-            line = "";
-            lineLength = 0;
+            line = word;
+            lineLength = wordLength;
+        } else {
+            line += " " + word;
+            lineLength += wordLength + 1;
         }
-        line += char;
-        lineLength += charWidth;
     }
     lines.push(line);
     return lines;
@@ -209,11 +210,11 @@ export class LCCGenerator {
     public generateLoreLines(): string[] {
         const lines: string[] = [];
 
-        lines.push("<gray><st><bold>                                           </bold></st>");
+        lines.push("<dark_gray><st><bold>                                           </bold></st>");
 
         if (this.data.abilities) {
-            lines.push("");
             for (const ability of this.data.abilities) {
+                lines.push("");
                 let topLine = `<#1378f2>${ability.trigger}`;
                 if (ability.cooldown || ability.energy || ability.durability || ability.health) {
                     topLine += " <dark_gray>|";
@@ -221,7 +222,7 @@ export class LCCGenerator {
                         topLine += ` <#f28313>${ability.cooldown}s Cooldown`;
                     }
                     if (ability.energy) {
-                        topLine += ` <dark_gray>| <red>-${ability.energy}<light_blue>⚡`;
+                        topLine += ` <dark_gray>| <red>-${ability.energy}<aqua>⚡`;
                     }
                     if (ability.durability) {
                         topLine += ` <dark_gray>| <red>-${ability.durability} Dur`;
@@ -236,7 +237,12 @@ export class LCCGenerator {
                         lines.push(` <bold><dark_gray>| <#b31e14>[!]</bold> ${condition}`);
                     }
                 }
-                lines.push(`<dark_gray>└ <bold><gold>${ability.name}</bold> <dark_gray>➤ <gray>${ability.description}`);
+                const uncolored = `└ ${ability.name} ➤ ${ability.description}`;
+                const descriptionLines = splitLinesByWidth(uncolored, 176);
+                lines.push(descriptionLines[0].replace(`└ ${ability.name} ➤ `, `<dark_gray>└ <bold><gold>${ability.name}</bold> <dark_gray>➤ <gray>`))
+                for (const line of descriptionLines.slice(1)) {
+                    lines.push("<gray>   " + line);
+                }
             }
         }
 

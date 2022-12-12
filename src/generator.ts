@@ -272,6 +272,7 @@ export class LCCGenerator {
                         console.log(`Unknown effect: ${key}`);
                 }
             }
+            lines.push("");
             lines.push(line);
         }
 

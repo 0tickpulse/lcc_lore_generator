@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -b",
     "watch": "tsc -b -w",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "download": "curl https://raw.githubusercontent.com/0tickpulse/lcc_lore_generator/master/src/generator.ts > src/generator.ts && curl https://raw.githubusercontent.com/0tickpulse/lcc_lore_generator/master/src/index.ts > src/index.ts"
   },
   "author": "",
   "license": "MIT",

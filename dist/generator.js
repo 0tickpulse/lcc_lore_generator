@@ -72,35 +72,7 @@ class LCCGenerator {
     generate() {
         return {
             Lore: this.generateLoreLines(),
-            Attributes: this.generateAttributes()
         };
-    }
-    generateAttributes() {
-        const effects = this.data.effects;
-        if (!effects) {
-            return {};
-        }
-        const attributes = {};
-        if (effects.health) {
-            attributes.Health = effects.health;
-        }
-        if (effects.attack) {
-            attributes.Damage = effects.attack;
-        }
-        if (effects.armor) {
-            attributes.Armor = effects.armor;
-        }
-        if (effects.speed) {
-            attributes.MovementSpeed = effects.speed - 1;
-        }
-        if (effects.luck) {
-            attributes.Luck = effects.luck;
-        }
-        const output = {};
-        for (const slot of this.data.effectslots ?? ["MainHand"]) {
-            output[slot] = attributes;
-        }
-        return output;
     }
     generateLoreLines() {
         const lines = [];
@@ -127,7 +99,7 @@ class LCCGenerator {
                 lines.push(topLine);
                 if (ability.conditions) {
                     for (const condition of ability.conditions) {
-                        lines.push(` <bold><dark_gray>| <#b31e14>[!]</bold> ${condition}`);
+                        lines.push(` <bold><dark_gray>| <#b31e14>[!]</bold> <gray>${condition}`);
                     }
                 }
                 const uncolored = `└ ${ability.name} ➤ ${ability.description}`;
@@ -142,27 +114,40 @@ class LCCGenerator {
             lines.push("");
             lines.push("<dark_gray><st><bold>                </bold></st>[ &9&7Effects<dark_gray> ]<dark_gray><st><bold>                </bold></st>");
             let line = "";
-            for (const [key, value] of Object.entries(this.data.effects)) {
-                const color = value > 0 ? "<green>" : "<red>";
-                const plus = value > 0 ? "+" : "";
+            for (const [key, attr] of Object.entries(this.data.effects)) {
+                const color = attr.value > 0 ? "<green>" : "<red>";
+                const prefix = attr.value > 0 ? "+" : "";
+                let suffix;
+                switch (attr.type) {
+                    case "add_flat":
+                        suffix = "";
+                        break;
+                    case "add_percent":
+                        suffix = "%";
+                        break;
+                    case "mul":
+                        suffix = "x";
+                        break;
+                }
+                const number = color + prefix + attr.value + suffix;
                 switch (key) {
                     case "health":
-                        line += `  ${color}${plus}${value}<red>❤`;
+                        line += `  ${color}${number}<red>❤`;
                         break;
                     case "speed":
-                        line += `  ${color}x${value}<white>👟`;
+                        line += `  ${color}${number}<white>👟`;
                         break;
                     case "energy":
-                        line += `  ${color}${plus}${value}<aqua>⚡`;
+                        line += `  ${color}${number}<aqua>⚡`;
                         break;
                     case "attack":
-                        line += `  ${color}x${value}<white>⚔`;
+                        line += `  ${color}${number}<white>⚔`;
                         break;
                     case "luck":
-                        line += `  ${color}${plus}${value}<white>🍀`;
+                        line += `  ${color}${number}<white>🍀`;
                         break;
                     case "armor":
-                        line += `  ${color}x${value}<white>🛡`;
+                        line += `  ${color}${number}<white>🛡`;
                         break;
                     default:
                         console.log(`Unknown effect: ${key}`);

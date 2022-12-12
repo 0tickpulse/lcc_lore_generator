@@ -1,13 +1,17 @@
-wandfirebasic:
+piratewings:
   Lore:
     - '<dark_gray><st><bold>                                           </bold></st>'
     - ''
-    - '<#1378f2>Crouch + LMB <dark_gray>| <#f28313>1s Cooldown <dark_gray>| <red>-8<aqua>⚡'
-    - ' <dark_gray>└ <bold><gold>Torch</bold> <dark_gray>➤ <gray>Shoot a fireball'
+    - '<#1378f2>Glide + Land <dark_gray>| <#f28313>20s Cooldown <dark_gray>| <red>-30<aqua>⚡'
+    - ' <bold><dark_gray>| <#b31e14>[!]</bold> <gray>Must be crouching when landing'
+    - ' <bold><dark_gray>| <#b31e14>[!]</bold> <gray>Must be above 3 blocks and descend'
+    - ' <dark_gray>└ <bold><gold>Overboard!</bold> <dark_gray>➤ <gray>Unleash a burst of'
+    - '<gray>   water around you as you Land'
     - ''
-    - '<#1378f2>Crouch + RMB <dark_gray>| <#f28313>3s Cooldown <dark_gray>| <red>-15<aqua>⚡'
-    - ' <dark_gray>└ <bold><gold>Embers</bold> <dark_gray>➤ <gray>Surround yourself with'
-    - '<gray>   embers'
+    - '<dark_gray><st><bold>                </bold></st>[ &9&7Effects<dark_gray> ]<dark_gray><st><bold>                </bold></st>'
+    - '  <green><green>+4<red>❤  <green><green>+15%<white>👟'
     - ''
-    - '<dark_gray><st><bold>                </bold></st>[ &9<bold>&fBASIC</bold><dark_gray> ]<dark_gray><st><bold>                </bold></st>'
-  Attributes: {}
+    - '<dark_gray><st><bold>                                           </bold></st>'
+    - '<dark_gray> Fly by the seat of your Coattails!'
+    - ''
+    - '<dark_gray><st><bold>                </bold></st>[ &9<bold><gradient:#c302d1:#632fbd:#c302d1>EVENT</gradient></bold><dark_gray> ]<dark_gray><st><bold>                </bold></st>'

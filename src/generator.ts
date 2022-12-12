@@ -251,22 +251,22 @@ export class LCCGenerator {
                 const number = color + prefix + attr.value + suffix;
                 switch (key) {
                     case "health":
-                        line += `  ${color}${number}<red>❤`;
+                        line += `  ${number}<red>❤`;
                         break;
                     case "speed":
-                        line += `  ${color}${number}<white>👟`;
+                        line += `  ${number}<white>👟`;
                         break;
                     case "energy":
-                        line += `  ${color}${number}<aqua>⚡`;
+                        line += `  ${number}<aqua>⚡`;
                         break;
                     case "attack":
-                        line += `  ${color}${number}<white>⚔`;
+                        line += `  ${number}<white>⚔`;
                         break;
                     case "luck":
-                        line += `  ${color}${number}<white>🍀`;
+                        line += `  ${number}<white>🍀`;
                         break;
                     case "armor":
-                        line += `  ${color}${number}<white>🛡`;
+                        line += `  ${number}<white>🛡`;
                         break;
                     default:
                         console.log(`Unknown effect: ${key}`);

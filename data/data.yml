@@ -1,0 +1,19 @@
+piratewings:
+  abilities:
+  - name: "Overboard!"
+    trigger: "Glide + Land"
+    cooldown: 20
+    conditions:
+    - "Must be crouching when landing"
+    - "Must be above 3 blocks and descend"
+    energy: 30
+    description: "Unleash a burst of water around you as you Land"
+  effects:
+    health:
+      type: add_flat
+      value: 4
+    speed:
+      type: add_percent
+      value: 15
+  flavortext: "Fly by the seat of your Coattails!"
+  tier: event

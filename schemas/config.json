@@ -55,6 +55,23 @@
             ],
             "type": "string"
         },
+        "LCCItemAttributeValue": {
+            "properties": {
+                "type": {
+                    "description": "The type of the modifier",
+                    "enum": [
+                        "add_flat",
+                        "add_percent",
+                        "mul"
+                    ],
+                    "type": "string"
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
         "LCCItemData": {
             "properties": {
                 "abilities": {
@@ -68,28 +85,28 @@
                     "description": "Any effects this item has. These are attributes for the items.",
                     "properties": {
                         "armor": {
-                            "description": "The amount of armor this item provides. Multiplicative.",
-                            "type": "number"
+                            "$ref": "#/definitions/LCCItemAttributeValue",
+                            "description": "The amount of armor this item provides. Multiplicative."
                         },
                         "attack": {
-                            "description": "The amount of attack this item provides.",
-                            "type": "number"
+                            "$ref": "#/definitions/LCCItemAttributeValue",
+                            "description": "The amount of attack this item provides."
                         },
                         "energy": {
-                            "description": "The amount of energy this item provides.",
-                            "type": "number"
+                            "$ref": "#/definitions/LCCItemAttributeValue",
+                            "description": "The amount of energy this item provides."
                         },
                         "health": {
-                            "description": "The amount of health this item provides.",
-                            "type": "number"
+                            "$ref": "#/definitions/LCCItemAttributeValue",
+                            "description": "The amount of health this item provides."
                         },
                         "luck": {
-                            "description": "The amount of luck this item provides.",
-                            "type": "number"
+                            "$ref": "#/definitions/LCCItemAttributeValue",
+                            "description": "The amount of luck this item provides."
                         },
                         "speed": {
-                            "description": "The amount of movement speed this item provides. Multiplicative.",
-                            "type": "number"
+                            "$ref": "#/definitions/LCCItemAttributeValue",
+                            "description": "The amount of movement speed this item provides. Multiplicative."
                         }
                     },
                     "type": "object"
@@ -100,6 +117,27 @@
                         "$ref": "#/definitions/LCCItemAttributeSlot"
                     },
                     "type": "array"
+                },
+                "flavortext": {
+                    "description": "Any additional text that should be displayed on the item.",
+                    "type": "string"
+                },
+                "tier": {
+                    "description": "The tier of the item.",
+                    "enum": [
+                        "admin",
+                        "basic",
+                        "consumable",
+                        "cosmetic",
+                        "cursed",
+                        "decoration",
+                        "event",
+                        "legendary",
+                        "mythical",
+                        "uncommon",
+                        "utility"
+                    ],
+                    "type": "string"
                 }
             },
             "type": "object"

@@ -97,27 +97,27 @@ export interface LCCItemData {
         /**
          * The amount of health this item provides.
          */
-        health?: number;
+        health?: LCCItemAttributeValue;
         /**
          * The amount of movement speed this item provides. Multiplicative.
          */
-        speed?: number;
+        speed?: LCCItemAttributeValue;
         /**
          * The amount of energy this item provides.
          */
-        energy?: number;
+        energy?: LCCItemAttributeValue;
         /**
          * The amount of attack this item provides.
          */
-        attack?: number;
+        attack?: LCCItemAttributeValue;
         /**
          * The amount of armor this item provides. Multiplicative.
          */
-        armor?: number;
+        armor?: LCCItemAttributeValue;
         /**
          * The amount of luck this item provides.
          */
-        luck?: number;
+        luck?: LCCItemAttributeValue;
     };
     /**
      * Any additional text that should be displayed on the item.
@@ -129,19 +129,26 @@ export interface LCCItemData {
     tier: "admin" | "utility" | "cursed" | "event" | "decoration" | "cosmetic" | "mythical" | "legendary" | "uncommon" | "basic" | "consumable";
 }
 
-export interface LCCItemAttributes {
-    AttackSpeed?: number;
-    Armor?: number;
-    ArmorToughness?: number;
-    Damage?: number;
-    Health?: number;
-    Luck?: number;
-    KnockbackResistance?: number;
-    MovementSpeed?: number;
+export interface LCCItemAttributeValue {
+    /**
+     * The type of the modifier
+     */
+    type: "add_flat" | "add_percent" | "mul";
+    value: number;
 }
 
-export type LCCItemAttributeData = {
-    [key in LCCItemAttributeSlot]?: LCCItemAttributes;
+export type LCCItemAttributeTypes =
+    | "AttackSpeed"
+    | "Armor"
+    | "ArmorToughness"
+    | "Damage"
+    | "Health"
+    | "Luck"
+    | "KnockbackResistance"
+    | "MovementSpeed";
+
+export type LCCItemAttributes = {
+    [key in LCCItemAttributeTypes]?: LCCItemAttributeValue;
 };
 
 export interface LCCItemOutput {
@@ -150,7 +157,6 @@ export interface LCCItemOutput {
      */
     Display?: string;
     Lore?: string[];
-    Attributes?: LCCItemAttributeData;
 }
 
 function splitLinesByWidth(text: string, width: number): string[] {
@@ -177,35 +183,7 @@ export class LCCGenerator {
     public generate(): LCCItemOutput {
         return {
             Lore: this.generateLoreLines(),
-            Attributes: this.generateAttributes()
         };
-    }
-    public generateAttributes(): LCCItemAttributeData {
-        const effects = this.data.effects;
-        if (!effects) {
-            return {};
-        }
-        const attributes: LCCItemAttributes = {};
-        if (effects.health) {
-            attributes.Health = effects.health;
-        }
-        if (effects.attack) {
-            attributes.Damage = effects.attack;
-        }
-        if (effects.armor) {
-            attributes.Armor = effects.armor;
-        }
-        if (effects.speed) {
-            attributes.MovementSpeed = effects.speed - 1;
-        }
-        if (effects.luck) {
-            attributes.Luck = effects.luck;
-        }
-        const output: LCCItemAttributeData = {};
-        for (const slot of this.data.effectslots ?? ["MainHand"]) {
-            output[slot] = attributes;
-        }
-        return output;
     }
     public generateLoreLines(): string[] {
         const lines: string[] = [];
@@ -234,12 +212,14 @@ export class LCCGenerator {
                 lines.push(topLine);
                 if (ability.conditions) {
                     for (const condition of ability.conditions) {
-                        lines.push(` <bold><dark_gray>| <#b31e14>[!]</bold> ${condition}`);
+                        lines.push(` <bold><dark_gray>| <#b31e14>[!]</bold> <gray>${condition}`);
                     }
                 }
                 const uncolored = `└ ${ability.name} ➤ ${ability.description}`;
                 const descriptionLines = splitLinesByWidth(uncolored, 176);
-                lines.push(descriptionLines[0].replace(`└ ${ability.name} ➤ `, `<dark_gray>└ <bold><gold>${ability.name}</bold> <dark_gray>➤ <gray>`))
+                lines.push(
+                    descriptionLines[0].replace(`└ ${ability.name} ➤ `, `<dark_gray>└ <bold><gold>${ability.name}</bold> <dark_gray>➤ <gray>`)
+                );
                 for (const line of descriptionLines.slice(1)) {
                     lines.push("<gray>   " + line);
                 }
@@ -252,27 +232,41 @@ export class LCCGenerator {
                 "<dark_gray><st><bold>                </bold></st>[ &9&7Effects<dark_gray> ]<dark_gray><st><bold>                </bold></st>"
             );
             let line = "";
-            for (const [key, value] of Object.entries(this.data.effects)) {
-                const color = value > 0 ? "<green>" : "<red>";
-                const plus = value > 0 ? "+" : "";
+            for (const [key, attr] of Object.entries(this.data.effects)) {
+                
+                const color = attr.value > 0 ? "<green>" : "<red>";
+                const prefix = attr.value > 0 ? "+" : "";
+                let suffix: string;
+                switch (attr.type) {
+                    case "add_flat":
+                        suffix = "";
+                        break;
+                    case "add_percent":
+                        suffix = "%";
+                        break;
+                    case "mul":
+                        suffix = "x";
+                        break;
+                }
+                const number = color + prefix + attr.value + suffix;
                 switch (key) {
                     case "health":
-                        line += `  ${color}${plus}${value}<red>❤`;
+                        line += `  ${color}${number}<red>❤`;
                         break;
                     case "speed":
-                        line += `  ${color}x${value}<white>👟`;
+                        line += `  ${color}${number}<white>👟`;
                         break;
                     case "energy":
-                        line += `  ${color}${plus}${value}<aqua>⚡`;
+                        line += `  ${color}${number}<aqua>⚡`;
                         break;
                     case "attack":
-                        line += `  ${color}x${value}<white>⚔`;
+                        line += `  ${color}${number}<white>⚔`;
                         break;
                     case "luck":
-                        line += `  ${color}${plus}${value}<white>🍀`;
+                        line += `  ${color}${number}<white>🍀`;
                         break;
                     case "armor":
-                        line += `  ${color}x${value}<white>🛡`;
+                        line += `  ${color}${number}<white>🛡`;
                         break;
                     default:
                         console.log(`Unknown effect: ${key}`);
